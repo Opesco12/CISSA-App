@@ -12,7 +12,7 @@ import {
 } from "react-native";
 
 const Resources = () => {
-  const { title, subtitle, content } = useLocalSearchParams();
+  const { title,  content } = useLocalSearchParams();
 
   return (
     <Screen>

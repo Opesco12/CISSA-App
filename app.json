@@ -21,7 +21,8 @@
         "foregroundImage": "./assets/images/cis.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.opesco.CISSA"
     },
     "web": {
       "bundler": "metro",
@@ -55,6 +56,7 @@
     },
     "updates": {
       "url": "https://u.expo.dev/78caa94b-cbe4-4587-ae49-e9854764d342"
-    }
+    },
+    "owner": "opesco"
   }
 }
