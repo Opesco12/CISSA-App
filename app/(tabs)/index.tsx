@@ -11,26 +11,23 @@ import {
 } from "react-native";
 
 import Screen from "@/components/Screen";
-import Colors from "@/constants/colors";
 import { router } from "expo-router";
+import Colors from "@/constants/app-colors";
+import { RenderMenuItemProps } from "@/constants/types";
 
 const deviceWidth = Dimensions.get("window").width;
 const HomeScreen = () => {
-  const RenderMenuItem = ({ item, style }) => (
+  const RenderMenuItem = ({ item, style }: RenderMenuItemProps) => (
     <TouchableOpacity style={[styles.card, style]}>
       <View style={styles.textContainer}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.title}>{item.title}</Text>
       </View>
-      <Ionicons
-        name="chevron-forward"
-        size={20}
-        color="#FFD700"
-      />
+      <Ionicons name="chevron-forward" size={20} color="#FFD700" />
     </TouchableOpacity>
   );
 
-  const Item = ({ text, onPress }) => {
+  const Item = ({ text, onPress }: { text: string; onPress: () => void }) => {
     return (
       <Pressable onPress={onPress}>
         <View
@@ -56,10 +53,7 @@ const HomeScreen = () => {
           >
             {text}
           </Text>
-          <ArrowCircleRight2
-            size={25}
-            color={Colors.primary}
-          />
+          <ArrowCircleRight2 size={25} color={Colors.primary} />
         </View>
       </Pressable>
     );
@@ -101,10 +95,7 @@ const HomeScreen = () => {
           text={"Student Support and Resources"}
           onPress={() => router.push("/(tabs)/more")}
         />
-        <Item
-          text={"About CIS"}
-          onPress={() => router.push("/(tabs)/more")}
-        />
+        <Item text={"About CIS"} onPress={() => router.push("/(tabs)/more")} />
       </View>
     </Screen>
   );

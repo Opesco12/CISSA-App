@@ -3,7 +3,7 @@ import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Screen from "@/components/Screen";
-import Colors from "@/constants/colors";
+import Colors from "@/constants/app-colors";
 import { router, useLocalSearchParams } from "expo-router";
 
 const FacultyProfileScreen = () => {
@@ -32,7 +32,7 @@ const FacultyProfileScreen = () => {
             />
           ) : (
             <Image
-              src={data?.avatar}
+              src={Array.isArray(data?.avatar) ? data.avatar[0] : data?.avatar}
               style={{
                 width: 150,
                 height: 150,
@@ -47,20 +47,12 @@ const FacultyProfileScreen = () => {
             <TouchableOpacity
               style={[styles.contactIcon, { backgroundColor: "#28A745" }]}
             >
-              <Ionicons
-                name="call"
-                size={24}
-                color="#fff"
-              />
+              <Ionicons name="call" size={24} color="#fff" />
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.contactIcon, { backgroundColor: "#007BFF" }]}
             >
-              <Ionicons
-                name="mail"
-                size={24}
-                color="#fff"
-              />
+              <Ionicons name="mail" size={24} color="#fff" />
             </TouchableOpacity>
           </View>
           <View style={styles.details}>

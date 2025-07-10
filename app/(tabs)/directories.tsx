@@ -1,5 +1,6 @@
 import Screen from "@/components/Screen";
-import Colors from "@/constants/colors";
+import Colors from "@/constants/app-colors";
+// import { FacultyItemProps } from "@/constants/types";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React, { useState } from "react";
@@ -12,10 +13,17 @@ import {
   View,
 } from "react-native";
 
+export interface FacultyItemProps {
+  id: string;
+  name: string;
+  title: string;
+  avatar: string;
+}
+
 const Directories = () => {
   const [searchQuery, setSearchQuery] = useState("");
 
-  const facultyData = [
+  const facultyData: FacultyItemProps[] = [
     {
       id: "1",
       name: "Prof. Azeez Adesina Lukman",
@@ -36,32 +44,43 @@ const Directories = () => {
       avatar: "",
     },
     {
-      id: "3",
+      id: "4",
       name: "Prof. Adeyinka Tella",
       title: "HOD • Library and Information Science",
       avatar: "",
     },
     {
-      id: "3",
+      id: "5",
       name: "Dr. Patrick Udende",
       title: "HOD • Mass Communication",
       avatar: "",
     },
     {
-      id: "3",
+      id: "6",
       name: "Dr. (Mrs.) Temitayo Caroline Adeniran",
       title: "HOD • Telecommunication Science",
       avatar: "",
     },
   ];
 
-  const RenderFacultyItem = ({ item, style }) => (
+  const RenderFacultyItem = ({
+    item,
+    style,
+  }: {
+    item: FacultyItemProps;
+    style?: any;
+  }) => (
     <TouchableOpacity
       style={[styles.card, style]}
       onPress={() =>
         router.push({
           pathname: "/other-screens/directory-details",
-          params: item,
+          params: {
+            id: item.id,
+            name: item.name,
+            title: item.title,
+            avatar: item.avatar,
+          },
         })
       }
     >
@@ -83,15 +102,17 @@ const Directories = () => {
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.title}>{item.title}</Text>
       </View>
-      <Ionicons
-        name="chevron-forward"
-        size={20}
-        color="#FFD700"
-      />
+      <Ionicons name="chevron-forward" size={20} color="#FFD700" />
     </TouchableOpacity>
   );
 
-  const RenderDepartmentItem = ({ item, style }) => (
+  const RenderDepartmentItem = ({
+    item,
+    style,
+  }: {
+    item: { name: string; title: string };
+    style?: object;
+  }) => (
     <TouchableOpacity style={[styles.card, style]}>
       <Ionicons
         name="person-circle-outline"
@@ -103,11 +124,7 @@ const Directories = () => {
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.title}>{item.title}</Text>
       </View>
-      <Ionicons
-        name="chevron-forward"
-        size={20}
-        color="#FFD700"
-      />
+      <Ionicons name="chevron-forward" size={20} color="#FFD700" />
     </TouchableOpacity>
   );
 
