@@ -21,6 +21,21 @@
         "foregroundImage": "./assets/images/cis.png",
         "backgroundColor": "#ffffff"
       },
+      "permissions": [
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION",
+        "ACCESS_COARSE_LOCATION",
+        "ACCESS_FINE_LOCATION",
+        "android.permission.ACCESS_COARSE_LOCATION",
+        "android.permission.ACCESS_FINE_LOCATION"
+      ],
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4"
+        }
+      },
       "edgeToEdgeEnabled": true,
       "package": "com.opesco.CISSA"
     },
