@@ -1,4 +1,4 @@
-import Colors from "@/constants/colors-file";
+import Colors from "@/constants/app-colors";
 import { Tabs } from "expo-router";
 import { Home3, Map1, More, NotificationStatus } from "iconsax-react-nativejs";
 

@@ -32,34 +32,46 @@ const Directories = () => {
         "https://cis.unilorin.edu.ng/wp-content/uploads/sites/200/2024/08/CIS-Dr-Saadueen-Azeez-Adesine-400x440.jpg",
     },
     {
+      id: "1",
+      name: "Dr. Amos Orenyi Bajeh",
+      title: "Sub-Dean",
+      avatar:
+        "https://csc.cis.unilorin.edu.ng/wp-content/uploads/sites/60/2024/08/DSC05820-280x345.jpg",
+    },
+    {
       id: "2",
       name: "Prof. Oladele Rufus Olalere",
       title: "HOD • Computer Science",
-      avatar: "",
+      avatar:
+        "https://csc.cis.unilorin.edu.ng/wp-content/uploads/sites/60/2024/08/prof_Oladele-1-280x344.jpg",
     },
     {
       id: "3",
       name: "Dr. Muhtahir Oluwaseyi Oloyede",
       title: "HOD • Information Technology",
-      avatar: "",
+      avatar:
+        "https://it.cis.unilorin.edu.ng/wp-content/uploads/sites/61/2024/08/MO-Oloyede-280x345.jpg",
     },
     {
       id: "4",
       name: "Prof. Adeyinka Tella",
       title: "HOD • Library and Information Science",
-      avatar: "",
+      avatar:
+        "https://lisc.cis.unilorin.edu.ng/wp-content/uploads/sites/62/2024/08/Tella-Photo-a6-280x345.jpg",
     },
     {
       id: "5",
       name: "Dr. Patrick Udende",
       title: "HOD • Mass Communication",
-      avatar: "",
+      avatar:
+        "https://mc.cis.unilorin.edu.ng/wp-content/uploads/sites/136/2024/08/DSC05796-280x345.jpg",
     },
     {
       id: "6",
       name: "Dr. (Mrs.) Temitayo Caroline Adeniran",
       title: "HOD • Telecommunication Science",
-      avatar: "",
+      avatar:
+        "https://tsc.cis.unilorin.edu.ng/wp-content/uploads/sites/66/2024/08/BeautyPlus_20241021232341851_save-280x345.jpg",
     },
   ];
 

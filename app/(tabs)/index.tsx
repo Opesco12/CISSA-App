@@ -69,9 +69,9 @@ const HomeScreen = () => {
         }}
       >
         <Text style={styles.header}>Welcome, Cissaites👋</Text>
-        <View style={styles.iconContainer}>
+        {/* <View style={styles.iconContainer}>
           <Notification size={24} />
-        </View>
+        </View> */}
       </View>
 
       <Pressable onPress={() => router.push("/(tabs)/maps")}>
