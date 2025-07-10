@@ -32,42 +32,42 @@ const Directories = () => {
         "https://cis.unilorin.edu.ng/wp-content/uploads/sites/200/2024/08/CIS-Dr-Saadueen-Azeez-Adesine-400x440.jpg",
     },
     {
-      id: "1",
+      id: "2",
       name: "Dr. Amos Orenyi Bajeh",
       title: "Sub-Dean",
       avatar:
         "https://csc.cis.unilorin.edu.ng/wp-content/uploads/sites/60/2024/08/DSC05820-280x345.jpg",
     },
     {
-      id: "2",
+      id: "3",
       name: "Prof. Oladele Rufus Olalere",
       title: "HOD • Computer Science",
       avatar:
         "https://csc.cis.unilorin.edu.ng/wp-content/uploads/sites/60/2024/08/prof_Oladele-1-280x344.jpg",
     },
     {
-      id: "3",
+      id: "4",
       name: "Dr. Muhtahir Oluwaseyi Oloyede",
       title: "HOD • Information Technology",
       avatar:
         "https://it.cis.unilorin.edu.ng/wp-content/uploads/sites/61/2024/08/MO-Oloyede-280x345.jpg",
     },
     {
-      id: "4",
+      id: "5",
       name: "Prof. Adeyinka Tella",
       title: "HOD • Library and Information Science",
       avatar:
         "https://lisc.cis.unilorin.edu.ng/wp-content/uploads/sites/62/2024/08/Tella-Photo-a6-280x345.jpg",
     },
     {
-      id: "5",
+      id: "6",
       name: "Dr. Patrick Udende",
       title: "HOD • Mass Communication",
       avatar:
         "https://mc.cis.unilorin.edu.ng/wp-content/uploads/sites/136/2024/08/DSC05796-280x345.jpg",
     },
     {
-      id: "6",
+      id: "7",
       name: "Dr. (Mrs.) Temitayo Caroline Adeniran",
       title: "HOD • Telecommunication Science",
       avatar:
