@@ -1,4 +1,4 @@
-import React from "react";
+import React, { ReactNode } from "react";
 import {
   Platform,
   SafeAreaView,
@@ -8,7 +8,13 @@ import {
   View,
 } from "react-native";
 
-const Screen = ({ children, style }) => {
+const Screen = ({
+  children,
+  style,
+}: {
+  children: ReactNode;
+  style?: object;
+}) => {
   return (
     <View style={styles.container}>
       {Platform.OS === "ios" ? (

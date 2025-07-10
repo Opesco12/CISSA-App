@@ -1,4 +1,4 @@
-import Colors from "@/constants/colors";
+import Colors from "@/constants/app-colors";
 import { Tabs } from "expo-router";
 import { Home3, Map1, More, NotificationStatus } from "iconsax-react-nativejs";
 
@@ -23,10 +23,7 @@ export default function TabLayout() {
         options={{
           title: "Home",
           tabBarIcon: ({ color, size }) => (
-            <Home3
-              size={size ?? 25}
-              color={color}
-            />
+            <Home3 size={size ?? 25} color={color} />
           ),
         }}
       />
@@ -36,10 +33,7 @@ export default function TabLayout() {
         options={{
           title: "Maps",
           tabBarIcon: ({ color, size }) => (
-            <Map1
-              size={size ?? 25}
-              color={color}
-            />
+            <Map1 size={size ?? 25} color={color} />
           ),
         }}
       />
@@ -49,10 +43,7 @@ export default function TabLayout() {
         options={{
           title: "Directories",
           tabBarIcon: ({ color, size }) => (
-            <NotificationStatus
-              size={size ?? 25}
-              color={color}
-            />
+            <NotificationStatus size={size ?? 25} color={color} />
           ),
         }}
       />
@@ -62,10 +53,7 @@ export default function TabLayout() {
         options={{
           title: "More",
           tabBarIcon: ({ color, size }) => (
-            <More
-              size={size ?? 25}
-              color={color}
-            />
+            <More size={size ?? 25} color={color} />
           ),
         }}
       />

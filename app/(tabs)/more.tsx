@@ -2,12 +2,13 @@ import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Screen from "@/components/Screen";
-import Colors from "@/constants/colors";
+import Colors from "@/constants/app-colors";
 import { router } from "expo-router";
 
 import _ from "lodash";
 
 import HandBook from "../../assets/unilorin_handbook.json";
+import { RenderMenuItemProps } from "@/constants/types";
 
 const MoreScreen = () => {
   const facultyOverview = [
@@ -23,20 +24,17 @@ const MoreScreen = () => {
     },
   ];
 
-  const RenderMenuItem = ({ item, style, onPress }) => (
-    <TouchableOpacity
-      style={[styles.card, style]}
-      onPress={onPress}
-    >
+  const RenderMenuItem: React.FC<RenderMenuItemProps> = ({
+    item,
+    style,
+    onPress,
+  }) => (
+    <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
       <View style={styles.textContainer}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.title}>{item.title}</Text>
       </View>
-      <Ionicons
-        name="chevron-forward"
-        size={20}
-        color="#FFD700"
-      />
+      <Ionicons name="chevron-forward" size={20} color="#FFD700" />
     </TouchableOpacity>
   );
 
@@ -56,7 +54,7 @@ const MoreScreen = () => {
               borderBottomWidth: index !== facultyOverview.length - 1 ? 1 : 0,
               borderBottomColor: Colors.border,
             }}
-            onPress={() => router.push(item?.path)}
+            onPress={() => router.push(item.path as any)}
           />
         ))}
       </View>

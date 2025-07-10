@@ -32,8 +32,13 @@ const GoogleMapsComponent = ({
   const mapRef = useRef(null);
   const placesAutocompleteRef = useRef(null);
   const [selectedCard, setSelectedCard] = useState("");
-  const [location, setLocation] = useState(null);
-  const [errorMsg, setErrorMsg] = useState(null);
+  const [location, setLocation] = useState<{
+    latitude: number;
+    longitude: number;
+    latitudeDelta: number;
+    longitudeDelta: number;
+  } | null>(null);
+  const [errorMsg, setErrorMsg] = useState<string | null>(null);
   const [directions, setDirections] = useState(null);
   const [loadingDirections, setLoadingDirections] = useState(false);
 
@@ -87,7 +92,7 @@ const GoogleMapsComponent = ({
   ];
 
   // Fetch place details using Places API
-  const fetchPlaceDetails = async (placeId) => {
+  const fetchPlaceDetails = async (placeId: any) => {
     if (!placeId) return;
 
     setLoadingPlaceDetails(true);
@@ -114,7 +119,7 @@ const GoogleMapsComponent = ({
   };
 
   // Handle selecting a place from Places UI Kit autocomplete
-  const handleSelectPlace = (data, details = null) => {
+  const handleSelectPlace = (data: any, details = null) => {
     const placeLocation = {
       latitude: details.geometry.location.lat,
       longitude: details.geometry.location.lng,
@@ -142,7 +147,7 @@ const GoogleMapsComponent = ({
     Keyboard.dismiss();
   };
 
-  const getDirections = async (destLat, destLng) => {
+  const getDirections = async (destLat: number, destLng: number) => {
     if (!location) {
       Alert.alert("Error", "Your current location is not available");
       return;
@@ -184,7 +189,7 @@ const GoogleMapsComponent = ({
     }
   };
 
-  const openInGoogleMaps = (destLat, destLng) => {
+  const openInGoogleMaps = (destLat: number, destLng: number) => {
     if (!location) {
       Alert.alert("Error", "Your current location is not available");
       return;
@@ -195,7 +200,7 @@ const GoogleMapsComponent = ({
   };
 
   // Function to decode Google's encoded polyline
-  const decodePolyline = (encoded) => {
+  const decodePolyline = (encoded: string) => {
     const poly = [];
     let index = 0,
       lat = 0,
@@ -248,7 +253,7 @@ const GoogleMapsComponent = ({
   };
 
   // Render stars for place rating
-  const renderRatingStars = (rating) => {
+  const renderRatingStars = (rating: number) => {
     if (!rating) return null;
 
     const stars = [];
@@ -257,14 +262,7 @@ const GoogleMapsComponent = ({
 
     for (let i = 0; i < 5; i++) {
       if (i < fullStars) {
-        stars.push(
-          <Star
-            key={i}
-            size={16}
-            color="#FFD700"
-            fill="#FFD700"
-          />
-        );
+        stars.push(<Star key={i} size={16} color="#FFD700" fill="#FFD700" />);
       } else if (i === fullStars && halfStar) {
         stars.push(
           <Star
@@ -277,12 +275,7 @@ const GoogleMapsComponent = ({
         );
       } else {
         stars.push(
-          <Star
-            key={i}
-            size={16}
-            color="#FFD700"
-            style={{ opacity: 0.3 }}
-          />
+          <Star key={i} size={16} color="#FFD700" style={{ opacity: 0.3 }} />
         );
       }
     }
@@ -296,7 +289,7 @@ const GoogleMapsComponent = ({
   };
 
   // Render price level
-  const renderPriceLevel = (priceLevel) => {
+  const renderPriceLevel = (priceLevel: number | undefined) => {
     if (priceLevel === undefined) return null;
 
     let priceText = "";
@@ -312,7 +305,7 @@ const GoogleMapsComponent = ({
   };
 
   // Render opening hours
-  const renderOpeningHours = (openingHours) => {
+  const renderOpeningHours = (openingHours: { open_now: any }) => {
     if (!openingHours) return null;
 
     return (
@@ -323,11 +316,7 @@ const GoogleMapsComponent = ({
           alignItems: "center",
         }}
       >
-        <Clock
-          size={16}
-          color="#666"
-          style={{ marginRight: 5 }}
-        />
+        <Clock size={16} color="#666" style={{ marginRight: 5 }} />
         <Text style={{ color: openingHours.open_now ? "#4CAF50" : "#F44336" }}>
           {openingHours.open_now ? "Open now" : "Closed"}
         </Text>
@@ -336,7 +325,7 @@ const GoogleMapsComponent = ({
   };
 
   // Render photos in modal
-  const renderPhotos = (photos) => {
+  const renderPhotos = (photos: string | any[]) => {
     if (!photos || photos.length === 0) {
       return (
         <View style={styles.noPhotosContainer}>
@@ -373,10 +362,7 @@ const GoogleMapsComponent = ({
             router.back();
           }}
         >
-          <MoveLeft
-            color={"black"}
-            size={25}
-          />
+          <MoveLeft color={"black"} size={25} />
         </Pressable>
       </View>
 
@@ -469,10 +455,7 @@ const GoogleMapsComponent = ({
 
       {!location ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator
-            size="large"
-            color="#000"
-          />
+          <ActivityIndicator size="large" color="#000" />
           <Text style={{ marginTop: 10 }}>Loading map...</Text>
           {errorMsg && <Text style={{ color: "red" }}>{errorMsg}</Text>}
         </View>
@@ -556,10 +539,7 @@ const GoogleMapsComponent = ({
 
       {loadingDirections && (
         <View style={styles.directionsLoadingContainer}>
-          <ActivityIndicator
-            size="large"
-            color="#007BFF"
-          />
+          <ActivityIndicator size="large" color="#007BFF" />
           <Text style={styles.directionsLoadingText}>
             Getting directions...
           </Text>
@@ -568,10 +548,7 @@ const GoogleMapsComponent = ({
 
       {loadingPlaceDetails && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator
-            size="small"
-            color="#007BFF"
-          />
+          <ActivityIndicator size="small" color="#007BFF" />
           <Text style={styles.searchingText}>Loading place details...</Text>
         </View>
       )}
@@ -601,10 +578,7 @@ const GoogleMapsComponent = ({
                   }
                 }}
               >
-                <Info
-                  size={16}
-                  color="#007BFF"
-                />
+                <Info size={16} color="#007BFF" />
                 <Text style={styles.placeActionButtonText}>Details</Text>
               </TouchableOpacity>
 
@@ -617,10 +591,7 @@ const GoogleMapsComponent = ({
                   )
                 }
               >
-                <Navigation
-                  size={16}
-                  color="#fff"
-                />
+                <Navigation size={16} color="#fff" />
                 <Text style={styles.directionsButtonText}>Directions</Text>
               </Pressable>
             </View>
@@ -672,10 +643,7 @@ const GoogleMapsComponent = ({
                     )
                   }
                 >
-                  <Navigation
-                    size={16}
-                    color="#fff"
-                  />
+                  <Navigation size={16} color="#fff" />
                   <Text style={styles.directionsButtonText}>Directions</Text>
                 </Pressable>
               </View>
@@ -700,10 +668,7 @@ const GoogleMapsComponent = ({
                 style={styles.closeButton}
                 onPress={() => setShowPlaceDetailsModal(false)}
               >
-                <X
-                  size={24}
-                  color="#333"
-                />
+                <X size={24} color="#333" />
               </TouchableOpacity>
             </View>
 
@@ -757,10 +722,7 @@ const GoogleMapsComponent = ({
                   }
                 }}
               >
-                <Navigation
-                  size={18}
-                  color="#fff"
-                />
+                <Navigation size={18} color="#fff" />
                 <Text style={styles.modalDirectionsText}>Get Directions</Text>
               </TouchableOpacity>
             </View>

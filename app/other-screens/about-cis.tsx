@@ -1,5 +1,5 @@
 import Screen from "@/components/Screen";
-import Colors from "@/constants/colors";
+import Colors from "@/constants/app-colors";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
@@ -13,18 +13,14 @@ import {
 
 const About = () => {
   return (
-    <Screen>
+    <Screen style={{ flex: 1 }}>
       <View style={[styles.content, {}]}>
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.backButton}
             onPress={() => router.back()}
           >
-            <Ionicons
-              name="arrow-back"
-              size={24}
-              color="#666"
-            />
+            <Ionicons name="arrow-back" size={24} color="#666" />
           </TouchableOpacity>
         </View>
         <ScrollView style={styles.scrollContent}>
