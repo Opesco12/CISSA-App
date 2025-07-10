@@ -70,6 +70,8 @@
       "policy": "appVersion"
     },
     "updates": {
+      "checkOnLaunch": "ALWAYS",
+      "launchWaitMs": 0,
       "url": "https://u.expo.dev/78caa94b-cbe4-4587-ae49-e9854764d342"
     },
     "owner": "opesco"
