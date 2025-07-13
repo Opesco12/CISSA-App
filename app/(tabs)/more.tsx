@@ -29,12 +29,19 @@ const MoreScreen = () => {
     style,
     onPress,
   }) => (
-    <TouchableOpacity style={[styles.card, style]} onPress={onPress}>
+    <TouchableOpacity
+      style={[styles.card, style]}
+      onPress={onPress}
+    >
       <View style={styles.textContainer}>
         <Text style={styles.name}>{item.name}</Text>
         <Text style={styles.title}>{item.title}</Text>
       </View>
-      <Ionicons name="chevron-forward" size={20} color="#FFD700" />
+      <Ionicons
+        name="chevron-forward"
+        size={20}
+        color="#FFD700"
+      />
     </TouchableOpacity>
   );
 
@@ -83,18 +90,6 @@ const MoreScreen = () => {
           />
         ))}
       </View>
-
-      {/* <Text style={styles.sectionHeader}>Emergency Contacts</Text>
-      <View
-        style={{ borderWidth: 1, borderColor: Colors.border, borderRadius: 8 }}
-      >
-        <RenderMenuItem
-          item={{
-            name: "Campus Emergency",
-            title: "Contact details for campus security and emergencies",
-          }}
-        />
-      </View> */}
     </Screen>
   );
 };

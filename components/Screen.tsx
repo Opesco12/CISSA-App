@@ -39,7 +39,7 @@ const Screen = ({
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FFF", paddingHorizontal: 15 },
+  container: { flex: 1, backgroundColor: "#FFF", paddingHorizontal: 12 },
   content: { flex: 1 },
 });
 

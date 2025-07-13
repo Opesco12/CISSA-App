@@ -7,15 +7,24 @@
     "development": {
       "developmentClient": true,
       "distribution": "internal",
-      "channel": "development"
+      "channel": "development",
+      "env": {
+        "API_KEY": "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4"
+      }
     },
     "preview": {
       "distribution": "internal",
-      "channel": "preview"
+      "channel": "preview",
+      "env": {
+        "API_KEY": "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4"
+      }
     },
     "production": {
       "autoIncrement": true,
-      "channel": "production"
+      "channel": "production",
+      "env": {
+        "API_KEY": "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4"
+      }
     }
   },
   "submit": {

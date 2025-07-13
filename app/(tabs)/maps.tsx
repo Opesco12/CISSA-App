@@ -27,7 +27,7 @@ import {
 import MapView, { Marker, Polyline } from "react-native-maps";
 
 const GoogleMapsComponent = ({
-  googleMapsApiKey = "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4",
+  googleMapsApiKey = Constants.expoConfig?.extra?.apiKey,
 }) => {
   const mapRef = useRef(null);
   const placesAutocompleteRef = useRef(null);
@@ -50,8 +50,6 @@ const GoogleMapsComponent = ({
 
   useEffect(() => {
     (async () => {
-      console.log("Requesting location permissions");
-
       let { status } = await Location.requestForegroundPermissionsAsync();
       console.log("Permission status is: ", status);
       if (status !== "granted") {
@@ -76,7 +74,6 @@ const GoogleMapsComponent = ({
     })();
   }, []);
 
-  // Combine markers and bookmarks for map and carousel
   const combinedMarkers = [
     {
       name: "Faculty of CIS",
@@ -164,11 +161,9 @@ const GoogleMapsComponent = ({
       const data = await response.json();
 
       if (data.status === "OK" && data.routes.length > 0) {
-        // Decode the polyline
         const points = decodePolyline(data.routes[0].overview_polyline.points);
         setDirections(points);
 
-        // Fit the map to show both points and the route
         const coordinates = [
           { latitude: location.latitude, longitude: location.longitude },
           { latitude: destLat, longitude: destLng },
@@ -199,7 +194,6 @@ const GoogleMapsComponent = ({
     // Linking.openURL(url);
   };
 
-  // Function to decode Google's encoded polyline
   const decodePolyline = (encoded: string) => {
     const poly = [];
     let index = 0,
@@ -252,7 +246,6 @@ const GoogleMapsComponent = ({
     setPlaceDetails(null);
   };
 
-  // Render stars for place rating
   const renderRatingStars = (rating: number) => {
     if (!rating) return null;
 
@@ -262,7 +255,14 @@ const GoogleMapsComponent = ({
 
     for (let i = 0; i < 5; i++) {
       if (i < fullStars) {
-        stars.push(<Star key={i} size={16} color="#FFD700" fill="#FFD700" />);
+        stars.push(
+          <Star
+            key={i}
+            size={16}
+            color="#FFD700"
+            fill="#FFD700"
+          />
+        );
       } else if (i === fullStars && halfStar) {
         stars.push(
           <Star
@@ -275,7 +275,12 @@ const GoogleMapsComponent = ({
         );
       } else {
         stars.push(
-          <Star key={i} size={16} color="#FFD700" style={{ opacity: 0.3 }} />
+          <Star
+            key={i}
+            size={16}
+            color="#FFD700"
+            style={{ opacity: 0.3 }}
+          />
         );
       }
     }
@@ -288,7 +293,6 @@ const GoogleMapsComponent = ({
     );
   };
 
-  // Render price level
   const renderPriceLevel = (priceLevel: number | undefined) => {
     if (priceLevel === undefined) return null;
 
@@ -304,7 +308,6 @@ const GoogleMapsComponent = ({
     );
   };
 
-  // Render opening hours
   const renderOpeningHours = (openingHours: { open_now: any }) => {
     if (!openingHours) return null;
 
@@ -316,7 +319,11 @@ const GoogleMapsComponent = ({
           alignItems: "center",
         }}
       >
-        <Clock size={16} color="#666" style={{ marginRight: 5 }} />
+        <Clock
+          size={16}
+          color="#666"
+          style={{ marginRight: 5 }}
+        />
         <Text style={{ color: openingHours.open_now ? "#4CAF50" : "#F44336" }}>
           {openingHours.open_now ? "Open now" : "Closed"}
         </Text>
@@ -324,7 +331,6 @@ const GoogleMapsComponent = ({
     );
   };
 
-  // Render photos in modal
   const renderPhotos = (photos: string | any[]) => {
     if (!photos || photos.length === 0) {
       return (
@@ -337,7 +343,7 @@ const GoogleMapsComponent = ({
     return (
       <FlatList
         horizontal
-        data={photos.slice(0, 3)} // Limit to 3 photos for performance
+        data={photos.slice(0, 3)}
         keyExtractor={(item, index) => `photo-${index}`}
         renderItem={({ item }) => (
           <Image
@@ -362,7 +368,10 @@ const GoogleMapsComponent = ({
             router.back();
           }}
         >
-          <MoveLeft color={"black"} size={25} />
+          <MoveLeft
+            color={"black"}
+            size={25}
+          />
         </Pressable>
       </View>
 
@@ -455,7 +464,10 @@ const GoogleMapsComponent = ({
 
       {!location ? (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="large" color="#000" />
+          <ActivityIndicator
+            size="large"
+            color="#000"
+          />
           <Text style={{ marginTop: 10 }}>Loading map...</Text>
           {errorMsg && <Text style={{ color: "red" }}>{errorMsg}</Text>}
         </View>
@@ -539,7 +551,10 @@ const GoogleMapsComponent = ({
 
       {loadingDirections && (
         <View style={styles.directionsLoadingContainer}>
-          <ActivityIndicator size="large" color="#007BFF" />
+          <ActivityIndicator
+            size="large"
+            color="#007BFF"
+          />
           <Text style={styles.directionsLoadingText}>
             Getting directions...
           </Text>
@@ -548,7 +563,10 @@ const GoogleMapsComponent = ({
 
       {loadingPlaceDetails && (
         <View style={styles.loadingContainer}>
-          <ActivityIndicator size="small" color="#007BFF" />
+          <ActivityIndicator
+            size="small"
+            color="#007BFF"
+          />
           <Text style={styles.searchingText}>Loading place details...</Text>
         </View>
       )}
@@ -578,7 +596,10 @@ const GoogleMapsComponent = ({
                   }
                 }}
               >
-                <Info size={16} color="#007BFF" />
+                <Info
+                  size={16}
+                  color="#007BFF"
+                />
                 <Text style={styles.placeActionButtonText}>Details</Text>
               </TouchableOpacity>
 
@@ -591,7 +612,10 @@ const GoogleMapsComponent = ({
                   )
                 }
               >
-                <Navigation size={16} color="#fff" />
+                <Navigation
+                  size={16}
+                  color="#fff"
+                />
                 <Text style={styles.directionsButtonText}>Directions</Text>
               </Pressable>
             </View>
@@ -643,7 +667,10 @@ const GoogleMapsComponent = ({
                     )
                   }
                 >
-                  <Navigation size={16} color="#fff" />
+                  <Navigation
+                    size={16}
+                    color="#fff"
+                  />
                   <Text style={styles.directionsButtonText}>Directions</Text>
                 </Pressable>
               </View>
@@ -668,7 +695,10 @@ const GoogleMapsComponent = ({
                 style={styles.closeButton}
                 onPress={() => setShowPlaceDetailsModal(false)}
               >
-                <X size={24} color="#333" />
+                <X
+                  size={24}
+                  color="#333"
+                />
               </TouchableOpacity>
             </View>
 
@@ -722,7 +752,10 @@ const GoogleMapsComponent = ({
                   }
                 }}
               >
-                <Navigation size={18} color="#fff" />
+                <Navigation
+                  size={18}
+                  color="#fff"
+                />
                 <Text style={styles.modalDirectionsText}>Get Directions</Text>
               </TouchableOpacity>
             </View>
@@ -768,7 +801,6 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
   },
-  // Search styles
   searchContainer: {
     position: "absolute",
     top: 20,
@@ -781,7 +813,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: "#333",
   },
-  // Selected place styles
   selectedPlaceContainer: {
     position: "absolute",
     top: 80,
@@ -974,7 +1005,6 @@ const styles = StyleSheet.create({
     fontSize: 12,
     fontWeight: "600",
   },
-  // Modal styles
   modalOverlay: {
     flex: 1,
     backgroundColor: "rgba(0,0,0,0.5)",
