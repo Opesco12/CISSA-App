@@ -1,14 +1,7 @@
 import * as Linking from "expo-linking";
 import * as Location from "expo-location";
 import { router } from "expo-router";
-import {
-  Clock,
-  Info,
-  MoveLeft,
-  Navigation,
-  Star,
-  X,
-} from "lucide-react-native";
+import { Clock, MoveLeft, Navigation, Star, X } from "lucide-react-native";
 import { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -24,12 +17,12 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
+// import "react-native-get-random-values";
 import MapView, { Marker, Polyline } from "react-native-maps";
 
-const GoogleMapsComponent = ({
-  googleMapsApiKey = Constants.expoConfig?.extra?.apiKey,
-}) => {
-  const mapRef = useRef(null);
+const GoogleMapsComponent = ({}) => {
+  const googleMapsApiKey = "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4";
+  const mapRef = useRef<MapView | null>(null);
   const placesAutocompleteRef = useRef(null);
   const [selectedCard, setSelectedCard] = useState("");
   const [location, setLocation] = useState<{
@@ -39,7 +32,9 @@ const GoogleMapsComponent = ({
     longitudeDelta: number;
   } | null>(null);
   const [errorMsg, setErrorMsg] = useState<string | null>(null);
-  const [directions, setDirections] = useState(null);
+  const [directions, setDirections] = useState<
+    { latitude: number; longitude: number }[] | null
+  >(null);
   const [loadingDirections, setLoadingDirections] = useState(false);
 
   // Places UI Kit related state
@@ -88,7 +83,6 @@ const GoogleMapsComponent = ({
     },
   ];
 
-  // Fetch place details using Places API
   const fetchPlaceDetails = async (placeId: any) => {
     if (!placeId) return;
 
@@ -116,7 +110,21 @@ const GoogleMapsComponent = ({
   };
 
   // Handle selecting a place from Places UI Kit autocomplete
-  const handleSelectPlace = (data: any, details = null) => {
+  const handleSelectPlace = (
+    data: any,
+    details: {
+      name?: string;
+      place_id?: string;
+      geometry?: { location: { lat: number; lng: number } };
+      formatted_address?: string;
+      types?: string[];
+    } | null = null
+  ) => {
+    if (!details || !details?.geometry || !details?.geometry.location) {
+      Alert.alert("Error", "Could not get place details.");
+      return;
+    }
+
     const placeLocation = {
       latitude: details.geometry.location.lat,
       longitude: details.geometry.location.lng,
@@ -124,11 +132,11 @@ const GoogleMapsComponent = ({
 
     // Set selected place and update map
     setSelectedPlace({
-      name: details.name,
-      place_id: details.place_id,
+      name: details?.name,
+      place_id: details?.place_id,
       coordinates: placeLocation,
-      description: details.formatted_address || "Selected location",
-      types: details.types || [],
+      description: details?.formatted_address || "Selected location",
+      types: details?.types || [],
     });
 
     // Animate map to the selected place
@@ -375,25 +383,22 @@ const GoogleMapsComponent = ({
         </Pressable>
       </View>
 
-      {/* Places UI Kit Autocomplete */}
       {/* <View style={styles.searchContainer}>
         <GooglePlacesAutocomplete
           ref={placesAutocompleteRef}
           placeholder="Search for a place..."
           onPress={handleSelectPlace}
           fetchDetails={true}
+          predefinedPlaces={[]}
+          textInputProps={[]}
           query={{
             key: googleMapsApiKey,
             language: "en",
-            ...(location && {
-              location: `${location.latitude},${location.longitude}`,
-              radius: "50000",
-            }),
           }}
           enablePoweredByContainer={false}
           styles={{
             container: {
-              flex: 0,
+              flex: 1,
             },
             textInputContainer: {
               backgroundColor: "#fff",
@@ -407,6 +412,7 @@ const GoogleMapsComponent = ({
               shadowOpacity: 0.25,
               shadowRadius: 3.84,
               elevation: 5,
+              top: 20,
             },
             textInput: {
               height: 50,
@@ -423,6 +429,9 @@ const GoogleMapsComponent = ({
               shadowOpacity: 0.25,
               shadowRadius: 3.84,
               elevation: 5,
+              position: "absolute",
+              top: 45,
+              zIndex: 1000,
             },
             row: {
               padding: 13,
@@ -449,7 +458,11 @@ const GoogleMapsComponent = ({
           renderRightButton={() =>
             selectedPlace ? (
               <TouchableOpacity
-                style={{ justifyContent: "center", marginRight: 15 }}
+                style={{
+                  justifyContent: "center",
+                  marginRight: 15,
+                  // height: 30,
+                }}
                 onPress={clearSearch}
               >
                 <X
@@ -478,7 +491,6 @@ const GoogleMapsComponent = ({
           initialRegion={location}
           showsUserLocation={true}
         >
-          {/* Combined markers (predefined + bookmarks) */}
           {combinedMarkers.map((marker, index) => (
             <Marker
               key={marker.id || index}
@@ -506,7 +518,6 @@ const GoogleMapsComponent = ({
             </Marker>
           ))}
 
-          {/* Places API searched place marker */}
           {selectedPlace && (
             <Marker
               title={selectedPlace.name}
@@ -623,7 +634,6 @@ const GoogleMapsComponent = ({
         </View>
       )}
 
-      {/* Saved places carousel at bottom (combined markers + bookmarks) */}
       <View style={styles.markerListContainer}>
         <FlatList
           horizontal
@@ -743,7 +753,7 @@ const GoogleMapsComponent = ({
                 style={styles.modalDirectionsButton}
                 onPress={() => {
                   setShowPlaceDetailsModal(false);
-                  if (selectedPlace) {
+                  if (selectedPlace !== null) {
                     console.log("Selected place is: ", selectedPlace);
                     getDirections(
                       selectedPlace?.coordinates.latitude,
@@ -803,6 +813,7 @@ const styles = StyleSheet.create({
   },
   searchContainer: {
     position: "absolute",
+    height: 100,
     top: 20,
     left: 80,
     right: 20,

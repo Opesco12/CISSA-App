@@ -14,7 +14,7 @@ import {
 const KeyLocations = () => {
   return (
     <Screen style={{ flex: 1 }}>
-      <View style={[styles.content, {}]}>
+      <View style={styles.content}>
         <View style={styles.header}>
           <TouchableOpacity
             style={styles.backButton}
@@ -30,7 +30,29 @@ const KeyLocations = () => {
         <ScrollView style={styles.scrollContent}>
           <View style={styles.card}>
             <Text style={styles.title}>Key Offices and Lecture Halls</Text>
-            <Text style={styles.paragraph}></Text>
+
+            {/* Ground Floor Section */}
+            <Text style={styles.sectionTitle}>Ground Floor</Text>
+            <View style={styles.floorSection}>
+              <Text style={styles.paragraph}>Conference Room</Text>
+              <Text style={styles.paragraph}>News Room</Text>
+              <Text style={styles.paragraph}>Nacoss Exec Office</Text>
+              <Text style={styles.paragraph}>CISSA Exec Office</Text>
+            </View>
+
+            <Text style={styles.sectionTitle}>First Floor</Text>
+            <View style={styles.floorSection}>
+              <Text style={styles.paragraph}>Department Offices</Text>
+              <Text style={styles.paragraph}>UI/UX Lab</Text>
+              <Text style={styles.paragraph}>Faculty Office</Text>
+              <Text style={styles.paragraph}>Dean's Office</Text>
+            </View>
+
+            <Text style={styles.sectionTitle}>Third Floor</Text>
+            <View style={styles.floorSection}>
+              <Text style={styles.paragraph}>Lectures Room(1-5)</Text>
+              <Text style={styles.paragraph}>Computer Lab</Text>
+            </View>
           </View>
         </ScrollView>
       </View>
@@ -68,12 +90,23 @@ const styles = StyleSheet.create({
     color: Colors.primary,
     marginVertical: 12,
   },
+  subtitle: {
+    fontSize: 18,
+    fontWeight: "500",
+    color: Colors.primary,
+    marginTop: 8,
+    marginBottom: 4,
+  },
   paragraph: {
-    fontSize: 16,
+    fontSize: 18,
+    fontWeight: "500",
     color: "#333",
     lineHeight: 24,
     marginBottom: 12,
     textAlign: "justify",
+  },
+  floorSection: {
+    marginBottom: 16,
   },
   highlight: {
     fontWeight: "500",

@@ -86,7 +86,7 @@ const HomeScreen = () => {
         />
       </Pressable>
 
-      <View style={{ gap: 20 }}>
+      <View style={{ gap: 15 }}>
         <Item
           text={"Find Locations"}
           onPress={() => router.push("/(tabs)/maps")}
