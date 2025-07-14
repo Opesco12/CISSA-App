@@ -1,7 +1,6 @@
 import * as Linking from "expo-linking";
 import * as Location from "expo-location";
-import { router } from "expo-router";
-import { Clock, MoveLeft, Navigation, Star, X } from "lucide-react-native";
+import { Clock, Navigation, Star, X } from "lucide-react-native";
 import { useEffect, useRef, useState } from "react";
 import {
   ActivityIndicator,
@@ -369,20 +368,6 @@ const GoogleMapsComponent = ({}) => {
 
   return (
     <SafeAreaView style={styles.container}>
-      <View style={styles.backButtonContainer}>
-        <Pressable
-          style={styles.backButton}
-          onPress={() => {
-            router.back();
-          }}
-        >
-          <MoveLeft
-            color={"black"}
-            size={25}
-          />
-        </Pressable>
-      </View>
-
       {/* <View style={styles.searchContainer}>
         <GooglePlacesAutocomplete
           ref={placesAutocompleteRef}

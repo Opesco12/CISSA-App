@@ -1,13 +1,33 @@
 import { Ionicons } from "@expo/vector-icons";
+import * as Linking from "expo-linking";
+import { router, useLocalSearchParams } from "expo-router";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 import Screen from "@/components/Screen";
 import Colors from "@/constants/app-colors";
-import { router, useLocalSearchParams } from "expo-router";
 
 const FacultyProfileScreen = () => {
   const data = useLocalSearchParams();
+
+  console.log(data);
+
+  const handleCall = () => {
+    const phone = Array.isArray(data?.phoneNumber)
+      ? data.phoneNumber[0]
+      : data?.phoneNumber;
+    if (phone) {
+      Linking.openURL(`tel:${phone.trim()}`).catch((e) => console.error(e));
+    }
+  };
+
+  const handleEmail = () => {
+    const email = Array.isArray(data?.email) ? data.email[0] : data?.email;
+    if (email) {
+      Linking.openURL(`mailto:${email}`).catch((e) => console.error(e));
+    }
+  };
+
   return (
     <Screen>
       <View style={[styles.content, {}]}>
@@ -46,13 +66,23 @@ const FacultyProfileScreen = () => {
           <View style={styles.contactIcons}>
             <TouchableOpacity
               style={[styles.contactIcon, { backgroundColor: "#28A745" }]}
+              onPress={handleCall}
             >
-              <Ionicons name="call" size={24} color="#fff" />
+              <Ionicons
+                name="call"
+                size={24}
+                color="#fff"
+              />
             </TouchableOpacity>
             <TouchableOpacity
               style={[styles.contactIcon, { backgroundColor: "#007BFF" }]}
+              onPress={handleEmail}
             >
-              <Ionicons name="mail" size={24} color="#fff" />
+              <Ionicons
+                name="mail"
+                size={24}
+                color="#fff"
+              />
             </TouchableOpacity>
           </View>
           <View style={styles.details}>
