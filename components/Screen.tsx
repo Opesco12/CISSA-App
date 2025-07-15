@@ -31,7 +31,9 @@ const Screen = ({
             style,
           ]}
         >
-          <ScrollView>{children}</ScrollView>
+          <ScrollView showsVerticalScrollIndicator={false}>
+            {children}
+          </ScrollView>
         </View>
       )}
     </View>
@@ -39,7 +41,7 @@ const Screen = ({
 };
 
 const styles = StyleSheet.create({
-  container: { flex: 1, backgroundColor: "#FFF", paddingHorizontal: 12 },
+  container: { flex: 1, backgroundColor: "#FFF", paddingHorizontal: 10 },
   content: { flex: 1 },
 });
 

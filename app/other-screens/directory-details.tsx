@@ -10,8 +10,6 @@ import Colors from "@/constants/app-colors";
 const FacultyProfileScreen = () => {
   const data = useLocalSearchParams();
 
-  console.log(data);
-
   const handleCall = () => {
     const phone = Array.isArray(data?.phoneNumber)
       ? data.phoneNumber[0]
@@ -40,7 +38,6 @@ const FacultyProfileScreen = () => {
               onPress={() => router.back()}
             />
           </TouchableOpacity>
-          <Text style={styles.reportIssue}>Report Issue</Text>
         </View>
         <View style={styles.profileContainer}>
           {data?.avatar === "" ? (
@@ -92,43 +89,22 @@ const FacultyProfileScreen = () => {
             </View>
           </View>
 
-          {/* <View style={styles.officeCard}>
-            <Text style={styles.officeTitle}>Office Direction</Text>
+          <View style={styles.officeCard}>
+            <Text style={styles.label}>Office Direction</Text>
+
             <View
               style={{
-                padding: 15,
-                borderWidth: 1,
-                borderColor: Colors.border,
-                borderRadius: 8,
-                marginTop: 10,
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 2,
+                marginVertical: 8,
               }}
             >
-              <Text
-                style={{
-                  fontSize: 20,
-                  color: Colors.primary,
-                  marginVertical: 8,
-                  fontWeight: "500",
-                }}
-              >
-                Office A5, 2nd Floor, East Wing
+              <Text style={[styles.value, { textAlign: "center" }]}>
+                {data?.officeAddress}
               </Text>
-              <View
-                style={{
-                  flexDirection: "row",
-                  alignItems: "center",
-                  gap: 2,
-                  marginVertical: 8,
-                }}
-              >
-                <Location size={15} />
-                <Text style={styles.officeText}> Office A6 (near office)</Text>
-              </View>
-              <TouchableOpacity style={styles.directionsButton}>
-                <Text style={styles.directionsText}>Get Directions</Text>
-              </TouchableOpacity>
             </View>
-          </View> */}
+          </View>
         </View>
       </View>
     </Screen>
@@ -170,11 +146,13 @@ const styles = StyleSheet.create({
     marginVertical: 20,
   },
   label: { fontSize: 14, color: "#666" },
-  value: { fontSize: 16, fontWeight: "600", color: "#333", marginBottom: 8 },
+  value: { fontSize: 16, fontWeight: "500", color: "#333", marginBottom: 8 },
   officeCard: {
     width: "100%",
     backgroundColor: "#FFF",
     borderRadius: 8,
+    justifyContent: "center",
+    alignItems: "center",
   },
   officeTitle: {
     fontSize: 16,

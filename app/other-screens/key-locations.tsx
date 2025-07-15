@@ -27,16 +27,17 @@ const KeyLocations = () => {
             />
           </TouchableOpacity>
         </View>
-        <ScrollView style={styles.scrollContent}>
+        <ScrollView
+          style={styles.scrollContent}
+          showsVerticalScrollIndicator={false}
+        >
           <View style={styles.card}>
             <Text style={styles.title}>Key Offices and Lecture Halls</Text>
 
-            {/* Ground Floor Section */}
             <Text style={styles.sectionTitle}>Ground Floor</Text>
             <View style={styles.floorSection}>
               <Text style={styles.paragraph}>Conference Room</Text>
               <Text style={styles.paragraph}>News Room</Text>
-              <Text style={styles.paragraph}>Nacoss Exec Office</Text>
               <Text style={styles.paragraph}>CISSA Exec Office</Text>
             </View>
 
@@ -46,12 +47,20 @@ const KeyLocations = () => {
               <Text style={styles.paragraph}>UI/UX Lab</Text>
               <Text style={styles.paragraph}>Faculty Office</Text>
               <Text style={styles.paragraph}>Dean's Office</Text>
+              <Text style={styles.paragraph}>Sub-Dean's Office</Text>
+            </View>
+
+            <Text style={styles.sectionTitle}>Second Floor</Text>
+            <View style={styles.floorSection}>
+              <Text style={styles.paragraph}>Nacoss Exec Office</Text>
             </View>
 
             <Text style={styles.sectionTitle}>Third Floor</Text>
             <View style={styles.floorSection}>
               <Text style={styles.paragraph}>Lectures Room(1-5)</Text>
               <Text style={styles.paragraph}>Computer Lab</Text>
+              <Text style={styles.paragraph}>TCS Lab</Text>
+              <Text style={styles.paragraph}>Photo Lab</Text>
             </View>
           </View>
         </ScrollView>

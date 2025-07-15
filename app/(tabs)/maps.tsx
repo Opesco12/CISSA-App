@@ -1,4 +1,3 @@
-import * as Linking from "expo-linking";
 import * as Location from "expo-location";
 import { Clock, Navigation, Star, X } from "lucide-react-native";
 import { useEffect, useRef, useState } from "react";
@@ -16,11 +15,17 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-// import "react-native-get-random-values";
+import "react-native-get-random-values";
 import MapView, { Marker, Polyline } from "react-native-maps";
 
-const GoogleMapsComponent = ({}) => {
-  const googleMapsApiKey = "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4";
+import { combinedMarkers } from "@/constants/markers";
+
+// DANGER
+// DO NOT TOUCH THIS COMPONENT.
+
+const GoogleMapsComponent = ({
+  googleMapsApiKey = "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4",
+}) => {
   const mapRef = useRef<MapView | null>(null);
   const placesAutocompleteRef = useRef(null);
   const [selectedCard, setSelectedCard] = useState("");
@@ -67,20 +72,6 @@ const GoogleMapsComponent = ({}) => {
       }
     })();
   }, []);
-
-  const combinedMarkers = [
-    {
-      name: "Faculty of CIS",
-      coordinates: {
-        latitude: 8.48923,
-        longitude: 4.67454,
-        latitudeDelta: 0.0042,
-        longitudeDelta: 0.0042,
-      },
-      image:
-        "https://lh3.googleusercontent.com/p/AF1QipM69yB2glJ_MapQPB0wUx4bPqvzhfu4EzZpBrrb=w408-h306-k-no",
-    },
-  ];
 
   const fetchPlaceDetails = async (placeId: any) => {
     if (!placeId) return;
@@ -476,7 +467,7 @@ const GoogleMapsComponent = ({}) => {
           initialRegion={location}
           showsUserLocation={true}
         >
-          {combinedMarkers.map((marker, index) => (
+          {/* {combinedMarkers.map((marker, index) => (
             <Marker
               key={marker.id || index}
               title={marker.name}
@@ -501,7 +492,7 @@ const GoogleMapsComponent = ({}) => {
                 )}
               </View>
             </Marker>
-          ))}
+          ))} */}
 
           {selectedPlace && (
             <Marker
@@ -697,7 +688,7 @@ const GoogleMapsComponent = ({}) => {
               </TouchableOpacity>
             </View>
 
-            <View style={styles.modalBody}>
+            {/* <View style={styles.modalBody}>
               {placeDetails?.photos && renderPhotos(placeDetails.photos)}
 
               {renderRatingStars(placeDetails?.rating)}
@@ -731,7 +722,7 @@ const GoogleMapsComponent = ({}) => {
                   <Text style={styles.websiteButtonText}>Visit Website</Text>
                 </TouchableOpacity>
               )}
-            </View>
+            </View> */}
 
             <View style={styles.modalFooter}>
               <TouchableOpacity

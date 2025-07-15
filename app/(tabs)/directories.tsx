@@ -110,6 +110,7 @@ const Directories = () => {
             avatar: item.avatar,
             phoneNumber: item.phoneNumber,
             email: item.email,
+            officeAddress: item.officeAddress,
           },
         })
       }
