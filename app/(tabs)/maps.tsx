@@ -1,3 +1,4 @@
+import Constants from "expo-constants";
 import * as Location from "expo-location";
 import { Clock, Navigation, Star, X } from "lucide-react-native";
 import { useEffect, useRef, useState } from "react";
@@ -24,7 +25,7 @@ import { combinedMarkers } from "@/constants/markers";
 // DO NOT TOUCH THIS COMPONENT.
 
 const GoogleMapsComponent = ({
-  googleMapsApiKey = "AIzaSyACuKudhY0p5TPe9YUSWeYDaTEVnFBhou4",
+  googleMapsApiKey = Constants?.expoConfig?.extra?.apiKey,
 }) => {
   const mapRef = useRef<MapView | null>(null);
   const placesAutocompleteRef = useRef(null);
