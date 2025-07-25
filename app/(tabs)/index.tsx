@@ -76,12 +76,22 @@ const HomeScreen = () => {
         }}
       >
         <Text style={styles.header}>Welcome, Cissaites👋</Text>
+        <View style={{ flexDirection: "row", alignItems: "center" }}>
+          <Image
+            source={require("@/assets/images/unilorin_logo.png")}
+            style={styles.logo}
+          />
+          <Image
+            source={require("@/assets/images/cis.png")}
+            style={styles.logo}
+          />
+        </View>
       </View>
 
       <Pressable onPress={() => router.push("/(tabs)/maps")}>
         <Image
           source={require("@/assets/images/Map.png")}
-          style={{ width: deviceWidth - 30, height: 200 }}
+          style={{ width: deviceWidth - 20, height: 200 }}
           resizeMode="contain"
         />
       </Pressable>
@@ -133,6 +143,10 @@ const styles = StyleSheet.create({
     borderRadius: 17,
     borderColor: Colors.border,
     borderWidth: 2,
+  },
+  logo: {
+    height: 35,
+    width: 35,
   },
   textContainer: { flex: 1, gap: 5 },
   name: { fontSize: 19, marginVertical: 8, fontWeight: "600", color: "#333" },

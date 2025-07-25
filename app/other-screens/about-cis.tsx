@@ -4,6 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import React from "react";
 import {
+  Image,
   ScrollView,
   StyleSheet,
   Text,
@@ -20,11 +21,31 @@ const About = () => {
             style={styles.backButton}
             onPress={() => router.back()}
           >
-            <Ionicons name="arrow-back" size={24} color="#666" />
+            <Ionicons
+              name="arrow-back"
+              size={24}
+              color="#666"
+            />
           </TouchableOpacity>
         </View>
         <ScrollView style={styles.scrollContent}>
           <View style={styles.card}>
+            <View
+              style={{
+                flexDirection: "row",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+            >
+              <Image
+                source={require("@/assets/images/unilorin_logo.png")}
+                style={[styles.logo, { height: 60 }]}
+              />
+              <Image
+                source={require("@/assets/images/cis.png")}
+                style={styles.logo}
+              />
+            </View>
             <Text style={styles.title}>
               About Faculty of Communication and Information Sciences
             </Text>
@@ -193,6 +214,10 @@ const styles = StyleSheet.create({
     fontWeight: "600",
     color: Colors.primary,
     marginVertical: 12,
+  },
+  logo: {
+    height: 50,
+    width: 50,
   },
   paragraph: {
     fontSize: 16,
